@@ -1,12 +1,13 @@
 function [ output ] = LeftJacobian_SE3( xi )
-%RIGHTJACOBIAN as defined in http://perpustakaan.unitomo.ac.id/repository/Associating%20Uncertainty%20With%20Three-Dimensional.pdf
+%LEFTJACOBIAN definition can be found in Barfoot(state estimation for
+%robotics,2017) 
 
 Phi = xi(1:3);
 phi = norm(Phi);
 Rho = xi(4:6);
-Phi_skew = Lie.skew(Phi);
-Rho_skew = Lie.skew(Rho);
-J = Lie.LeftJacobian_SO3(Phi);
+Phi_skew = SO3_wedge(Phi);
+Rho_skew = SO3_wedge(Rho);
+J = SO3_left_jacobian(Phi);
 
 if (phi == 0)
     Q = 0.5*Rho_skew;
