@@ -1,5 +1,5 @@
 function AdH = AdSL3(H)
-
+% the Adjoint representation of the matrix Lie group H
 H1_1 = H(1,1);
 H1_2 = H(1,2);
 H1_3 = H(1,3);

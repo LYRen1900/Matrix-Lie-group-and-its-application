@@ -1,5 +1,6 @@
 function N = HatSL3(n)
-
+% the map from the vector to the Lie algebra sl(3) the trace of the matrix
+% N is 0 , trace(N)=0
 N = [n(5)  n(3)      n(1);...
      n(4) -n(5)-n(6) n(2);...
      n(7)  n(8)      n(6)];

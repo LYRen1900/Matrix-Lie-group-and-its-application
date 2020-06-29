@@ -3,12 +3,12 @@ K = (length(xi)-3)/3;
 
 Phi = xi(1:3);
 phi = norm(Phi);
-Phi_skew = Lie.skew(Phi);
+Phi_skew = SO3_wedge(Phi);
 
-J = Lie.LeftJacobian_SO3(Phi);
+J = SO3_left_jacobian(Phi);
 output = J;
 for i=1:K
-    Rho_skew = Lie.skew(xi(3+3*(i-1)+1:3+3*i));
+    Rho_skew = SO3_wedge(xi(3+3*(i-1)+1:3+3*i));
     
     if (phi == 0)
         Q = 0.5*Rho_skew;
@@ -20,7 +20,7 @@ for i=1:K
             * (Phi_skew*Rho_skew*Phi_skew*Phi_skew + Phi_skew*Phi_skew*Rho_skew*Phi_skew);
     end
     output = blkdiag(output, J);
-    output(end-2:end,1:3) = Q;
+    output(1:3,end-2:end) = Q;
 end
 
 end
